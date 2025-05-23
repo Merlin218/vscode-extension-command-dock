@@ -4,6 +4,7 @@
   "description": "A powerful command panel with Command Dock for executing terminal commands in your workspace",
   "version": "0.0.1",
   "publisher": "seagull",
+  "icon": "public/icon.png",
   "engines": {
     "vscode": "^1.74.0"
   },
