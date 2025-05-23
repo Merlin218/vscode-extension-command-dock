@@ -22,8 +22,8 @@
 ### 📁 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/vscode-extension-custom-button.git
-cd vscode-extension-custom-button
+git clone https://github.com/your-username/vscode-extension-command-dock.git
+cd vscode-extension-command-dock
 ```
 
 ### 📦 2. 安装依赖

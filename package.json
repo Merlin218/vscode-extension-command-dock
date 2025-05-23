@@ -23,12 +23,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Merlin218/vscode-extension-custom-button.git"
+    "url": "https://github.com/Merlin218/vscode-extension-command-dock.git"
   },
   "bugs": {
-    "url": "https://github.com/Merlin218/vscode-extension-custom-button/issues"
+    "url": "https://github.com/Merlin218/vscode-extension-command-dock/issues"
   },
-  "homepage": "https://github.com/Merlin218/vscode-extension-custom-button#readme",
+  "homepage": "https://github.com/Merlin218/vscode-extension-command-dock#readme",
   "license": "MIT",
   "activationEvents": [
     "onStartupFinished"

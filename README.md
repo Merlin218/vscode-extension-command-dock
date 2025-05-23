@@ -12,7 +12,7 @@
 [![VSCode](https://img.shields.io/badge/VSCode-007ACC?logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
 
-[![CI](https://img.shields.io/github/workflow/status/Merlin218/vscode-extension-custom-button/CI?logo=github)](https://github.com/Merlin218/vscode-extension-custom-button/actions)
+[![CI](https://img.shields.io/github/workflow/status/Merlin218/vscode-extension-command-dock/CI?logo=github)](https://github.com/Merlin218/vscode-extension-command-dock/actions)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/seagull.command-dock?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=seagull.command-dock)
 [![Rating](https://img.shields.io/visual-studio-marketplace/stars/seagull.command-dock?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=seagull.command-dock)
 
@@ -68,8 +68,8 @@
 
 ```bash
 # 📁 克隆项目
-git clone https://github.com/Merlin218/vscode-extension-custom-button.git
-cd vscode-extension-custom-button
+git clone https://github.com/Merlin218/vscode-extension-command-dock.git
+cd vscode-extension-command-dock
 
 # 📦 安装依赖
 pnpm install
@@ -356,7 +356,7 @@ make release-pre
 ## 📁 项目结构
 
 ```
-📦 vscode-extension-custom-button/
+📦 vscode-extension-command-dock/
 ├── 🤖 .github/workflows/     # GitHub Actions 配置
 ├── 📜 scripts/              # 构建和发布脚本
 │   ├── 📥 install-local.sh  # 本地安装脚本
@@ -409,8 +409,8 @@ make release-pre
 | 📖 **开发指南** | [DEVELOPMENT.md](DEVELOPMENT.md) | 完整的开发文档 |
 | 🔧 **本地安装** | [本地安装指南](docs/LOCAL_INSTALL_GUIDE.md) | 本地开发安装说明 |
 | 💡 **使用示例** | [示例文档](docs/EXAMPLES.md) | 丰富的配置示例 |
-| 🐛 **问题反馈** | [GitHub Issues](https://github.com/Merlin218/vscode-extension-custom-button/issues) | 提交 Bug 和功能请求 |
-| 💬 **讨论交流** | [GitHub Discussions](https://github.com/Merlin218/vscode-extension-custom-button/discussions) | 社区讨论 |
+| 🐛 **问题反馈** | [GitHub Issues](https://github.com/Merlin218/vscode-extension-command-dock/issues) | 提交 Bug 和功能请求 |
+| 💬 **讨论交流** | [GitHub Discussions](https://github.com/Merlin218/vscode-extension-command-dock/discussions) | 社区讨论 |
 
 </div>
 
@@ -420,7 +420,7 @@ make release-pre
 
 <div align="center">
 
-[![Contributors](https://img.shields.io/github/contributors/Merlin218/vscode-extension-custom-button?style=for-the-badge)](https://github.com/Merlin218/vscode-extension-custom-button/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/Merlin218/vscode-extension-command-dock?style=for-the-badge)](https://github.com/Merlin218/vscode-extension-command-dock/graphs/contributors)
 
 </div>
 

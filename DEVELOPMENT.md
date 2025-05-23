@@ -159,7 +159,7 @@ pnpm run release:pre
 ## 项目结构
 
 ```
-vscode-extension-custom-button/
+vscode-extension-command-dock/
 ├── .github/workflows/     # GitHub Actions 配置
 ├── scripts/              # 构建和发布脚本
 │   ├── install-local.sh  # 本地安装脚本
