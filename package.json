@@ -1,0 +1,173 @@
+{
+  "name": "command-dock",
+  "displayName": "Command Dock",
+  "description": "A powerful command panel with custom buttons for executing terminal commands in your workspace",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "customButton.addButton",
+        "title": "Add Custom Button",
+        "category": "Custom Button",
+        "icon": "$(add)"
+      },
+      {
+        "command": "customButton.removeButton",
+        "title": "Remove Custom Button",
+        "category": "Custom Button",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "customButton.editButton",
+        "title": "Edit Custom Button",
+        "category": "Custom Button",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "customButton.refreshPanel",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "customButton.executeFromPanel",
+        "title": "Execute Command",
+        "icon": "$(play)"
+      },
+      {
+        "command": "customButton.addButtonFromPanel",
+        "title": "Add Button",
+        "icon": "$(add)"
+      },
+      {
+        "command": "customButton.editButtonFromPanel",
+        "title": "Edit Button",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "customButton.removeButtonFromPanel",
+        "title": "Remove Button",
+        "icon": "$(trash)"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "customButtonPanel",
+          "name": "Custom Buttons",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "customButton.addButtonFromPanel",
+          "when": "view == customButtonPanel",
+          "group": "navigation@1"
+        },
+        {
+          "command": "customButton.refreshPanel",
+          "when": "view == customButtonPanel",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "customButton.executeFromPanel",
+          "when": "view == customButtonPanel && viewItem == customButton",
+          "group": "inline@1"
+        },
+        {
+          "command": "customButton.editButtonFromPanel",
+          "when": "view == customButtonPanel && viewItem == customButton",
+          "group": "inline@2"
+        },
+        {
+          "command": "customButton.removeButtonFromPanel",
+          "when": "view == customButtonPanel && viewItem == customButton",
+          "group": "inline@3"
+        },
+        {
+          "command": "customButton.executeFromPanel",
+          "when": "view == customButtonPanel && viewItem == customButton",
+          "group": "context@1"
+        },
+        {
+          "command": "customButton.editButtonFromPanel",
+          "when": "view == customButtonPanel && viewItem == customButton",
+          "group": "context@2"
+        },
+        {
+          "command": "customButton.removeButtonFromPanel",
+          "when": "view == customButtonPanel && viewItem == customButton",
+          "group": "context@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Custom Button Executor",
+      "properties": {
+        "customButton.buttons": {
+          "type": "array",
+          "default": [],
+          "description": "Custom buttons configuration",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the button"
+              },
+              "name": {
+                "type": "string",
+                "description": "Display name of the button"
+              },
+              "command": {
+                "type": "string",
+                "description": "Terminal command to execute"
+              },
+              "icon": {
+                "type": "string",
+                "description": "Icon for the button (optional)"
+              },
+              "color": {
+                "type": "string",
+                "description": "Button color (optional)"
+              }
+            },
+            "required": ["id", "name", "command"]
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "lint:fix": "eslint src --ext ts --fix",
+    "test": "node ./out/test/runTest.js",
+    "clean": "rimraf out",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4"
+  }
+} 
