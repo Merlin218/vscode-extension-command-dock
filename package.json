@@ -3,7 +3,7 @@
   "displayName": "Command Dock",
   "description": "A powerful command panel with Command Dock for executing terminal commands in your workspace",
   "version": "0.0.1",
-  "publisher": "seagull",
+  "publisher": "Merlin218",
   "icon": "public/icon.png",
   "engines": {
     "vscode": "^1.74.0"
@@ -23,12 +23,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/vscode-extension-custom-button.git"
+    "url": "https://github.com/Merlin218/vscode-extension-custom-button.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/vscode-extension-custom-button/issues"
+    "url": "https://github.com/Merlin218/vscode-extension-custom-button/issues"
   },
-  "homepage": "https://github.com/your-username/vscode-extension-custom-button#readme",
+  "homepage": "https://github.com/Merlin218/vscode-extension-custom-button#readme",
   "license": "MIT",
   "activationEvents": [
     "onStartupFinished"
