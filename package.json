@@ -2,7 +2,7 @@
   "name": "command-dock",
   "displayName": "Command Dock",
   "description": "A powerful command panel with Command Dock for executing terminal commands in your workspace",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "Merlin218",
   "icon": "public/icon.png",
   "engines": {
@@ -166,7 +166,11 @@
                 "description": "Button color (optional)"
               }
             },
-            "required": ["id", "name", "command"]
+            "required": [
+              "id",
+              "name",
+              "command"
+            ]
           }
         }
       }
@@ -206,4 +210,4 @@
     "@vscode/vsce": "^2.22.0",
     "rimraf": "^5.0.5"
   }
-} 
+}
