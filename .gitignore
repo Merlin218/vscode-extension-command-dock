@@ -200,4 +200,4 @@ coverage/
 
 # Development tools
 .eslintcache
-.tscache 
+.tscache .github/
