@@ -1,7 +1,7 @@
 {
   "name": "command-dock",
   "displayName": "Command Dock",
-  "description": "A powerful command panel with custom buttons for executing terminal commands in your workspace",
+  "description": "A powerful command panel with Command Dock for executing terminal commands in your workspace",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.74.0"
@@ -63,7 +63,7 @@
       "explorer": [
         {
           "id": "customButtonPanel",
-          "name": "Custom Buttons",
+          "name": "Command Dock",
           "when": "workspaceFolderCount > 0"
         }
       ]
@@ -120,7 +120,7 @@
         "customButton.buttons": {
           "type": "array",
           "default": [],
-          "description": "Custom buttons configuration",
+          "description": "Command Dock configuration",
           "items": {
             "type": "object",
             "properties": {
