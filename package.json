@@ -3,7 +3,7 @@
   "displayName": "Command Dock",
   "description": "A powerful command panel with Command Dock for executing terminal commands in your workspace",
   "version": "1.0.0",
-  "publisher": "Merlin218",
+  "publisher": "CommandDock",
   "icon": "public/icon.png",
   "engines": {
     "vscode": "^1.74.0"
