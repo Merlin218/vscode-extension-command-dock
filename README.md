@@ -145,9 +145,9 @@ make reinstall
 
 | 操作 | 快捷键 | 命令 |
 |------|--------|------|
-| ➕ **添加按钮** | `Cmd+Shift+P` | `Custom Button: Add Custom Button` |
-| ✏️ **编辑按钮** | `Cmd+Shift+P` | `Custom Button: Edit Custom Button` |
-| 🗑️ **删除按钮** | `Cmd+Shift+P` | `Custom Button: Remove Custom Button` |
+| ➕ **添加按钮** | `Cmd+Shift+P` | `Command Dock: Add Custom Button` |
+| ✏️ **编辑按钮** | `Cmd+Shift+P` | `Command Dock: Edit Custom Button` |
+| 🗑️ **删除按钮** | `Cmd+Shift+P` | `Command Dock: Remove Custom Button` |
 
 ## 💡 实用示例
 
@@ -158,7 +158,7 @@ make reinstall
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "dev-server",
       "name": "🚀 Dev Server",
@@ -200,7 +200,7 @@ make reinstall
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "git-status",
       "name": "📊 Status",
@@ -232,7 +232,7 @@ make reinstall
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "docker-up",
       "name": "🐳 Up",

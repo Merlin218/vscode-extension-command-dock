@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import { CustomButton } from './types';
+import { CommandDockButton } from './types';
 import { ButtonManager } from './buttonManager';
 import { UIHandler } from './uiHandler';
-import { CustomButtonPanelProvider } from './panelProvider';
+import { CommandDockPanelProvider } from './panelProvider';
 import { PanelCommands } from './panelCommands';
 
 /**
@@ -15,10 +15,10 @@ export function activate(context: vscode.ExtensionContext) {
   ButtonManager.initializeButtons();
 
   // 创建面板提供者
-  const panelProvider = new CustomButtonPanelProvider();
+  const panelProvider = new CommandDockPanelProvider();
   
   // 注册树视图
-  const treeView = vscode.window.createTreeView('customButtonPanel', {
+  const treeView = vscode.window.createTreeView('commandDockPanel', {
     treeDataProvider: panelProvider,
     showCollapseAll: true
   });
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册传统命令：添加按钮
   const addButtonCommand = vscode.commands.registerCommand(
-    'customButton.addButton',
+    'commandDock.addButton',
     async () => {
       await UIHandler.showAddButtonDialog();
       panelProvider.refresh(); // 刷新面板
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册传统命令：删除按钮
   const removeButtonCommand = vscode.commands.registerCommand(
-    'customButton.removeButton',
+    'commandDock.removeButton',
     async () => {
       await UIHandler.showRemoveButtonDialog();
       panelProvider.refresh(); // 刷新面板
@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册传统命令：编辑按钮
   const editButtonCommand = vscode.commands.registerCommand(
-    'customButton.editButton',
+    'commandDock.editButton',
     async () => {
       await UIHandler.showEditButtonDialog();
       panelProvider.refresh(); // 刷新面板
@@ -58,18 +58,38 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：执行按钮
   const executeButtonCommand = vscode.commands.registerCommand(
-    'customButton.execute',
-    (button: CustomButton) => {
+    'commandDock.execute',
+    (button: CommandDockButton) => {
       ButtonManager.executeButtonCommand(button);
+    }
+  );
+
+  // 注册命令：打开设置
+  const openSettingsCommand = vscode.commands.registerCommand(
+    'commandDock.openSettings',
+    () => {
+      vscode.commands.executeCommand('workbench.action.openSettings', 'commandDock');
     }
   );
 
   // 监听配置变化
   const configChangeListener = vscode.workspace.onDidChangeConfiguration((event) => {
-    if (event.affectsConfiguration('customButton.buttons')) {
+    if (event.affectsConfiguration('commandDock.buttons')) {
       // 重新初始化按钮
       ButtonManager.initializeButtons();
       // 面板会自动刷新（在 panelProvider 中监听）
+    }
+    
+    if (event.affectsConfiguration('commandDock.panelLocation')) {
+      // 当面板位置配置改变时，显示重启提示
+      vscode.window.showInformationMessage(
+        '面板位置配置已更改，请重新加载窗口以应用更改。',
+        '重新加载'
+      ).then((selection) => {
+        if (selection === '重新加载') {
+          vscode.commands.executeCommand('workbench.action.reloadWindow');
+        }
+      });
     }
   });
 
@@ -85,6 +105,7 @@ export function activate(context: vscode.ExtensionContext) {
     removeButtonCommand,
     editButtonCommand,
     executeButtonCommand,
+    openSettingsCommand,
     configChangeListener,
     workspaceChangeListener
   );

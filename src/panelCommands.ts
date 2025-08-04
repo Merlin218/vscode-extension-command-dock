@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
-import { CustomButton } from './types';
-import { CustomButtonPanelProvider, CustomButtonItem } from './panelProvider';
+import { CommandDockButton } from './types';
+import { CommandDockPanelProvider, CommandDockItem } from './panelProvider';
 import { ButtonManager } from './buttonManager';
 import { UIHandler } from './uiHandler';
 import { ConfigManager } from './configManager';
 
 export class PanelCommands {
   constructor(
-    private panelProvider: CustomButtonPanelProvider
+    private panelProvider: CommandDockPanelProvider
   ) {}
 
   /**
@@ -20,7 +20,7 @@ export class PanelCommands {
   /**
    * 从面板执行按钮命令
    */
-  public async executeFromPanel(button: CustomButton): Promise<void> {
+  public async executeFromPanel(button: CommandDockButton): Promise<void> {
     await ButtonManager.executeButtonCommand(button);
   }
 
@@ -40,7 +40,7 @@ export class PanelCommands {
   /**
    * 从面板编辑按钮
    */
-  public async editButtonFromPanel(item: CustomButtonItem): Promise<void> {
+  public async editButtonFromPanel(item: CommandDockItem): Promise<void> {
     if (!item.button) {
       return;
     }
@@ -102,7 +102,7 @@ export class PanelCommands {
       });
 
       // 更新按钮配置
-      const updatedButton: CustomButton = {
+      const updatedButton: CommandDockButton = {
         id: originalButton.id,
         name: name.trim(),
         command: command.trim(),
@@ -130,7 +130,7 @@ export class PanelCommands {
   /**
    * 从面板删除按钮
    */
-  public async removeButtonFromPanel(item: CustomButtonItem): Promise<void> {
+  public async removeButtonFromPanel(item: CommandDockItem): Promise<void> {
     if (!item.button) {
       return;
     }
@@ -164,32 +164,32 @@ export class PanelCommands {
   public registerCommands(context: vscode.ExtensionContext): void {
     // 刷新面板
     const refreshCommand = vscode.commands.registerCommand(
-      'customButton.refreshPanel',
+      'commandDock.refreshPanel',
       () => this.refreshPanel()
     );
 
     // 从面板执行命令
     const executeCommand = vscode.commands.registerCommand(
-      'customButton.executeFromPanel',
-      (button: CustomButton) => this.executeFromPanel(button)
+      'commandDock.executeFromPanel',
+      (button: CommandDockButton) => this.executeFromPanel(button)
     );
 
     // 从面板添加按钮
     const addCommand = vscode.commands.registerCommand(
-      'customButton.addButtonFromPanel',
+      'commandDock.addButtonFromPanel',
       () => this.addButtonFromPanel()
     );
 
     // 从面板编辑按钮
     const editCommand = vscode.commands.registerCommand(
-      'customButton.editButtonFromPanel',
-      (item: CustomButtonItem) => this.editButtonFromPanel(item)
+      'commandDock.editButtonFromPanel',
+      (item: CommandDockItem) => this.editButtonFromPanel(item)
     );
 
     // 从面板删除按钮
     const removeCommand = vscode.commands.registerCommand(
-      'customButton.removeButtonFromPanel',
-      (item: CustomButtonItem) => this.removeButtonFromPanel(item)
+      'commandDock.removeButtonFromPanel',
+      (item: CommandDockItem) => this.removeButtonFromPanel(item)
     );
 
     // 添加到订阅列表

@@ -37,108 +37,126 @@
   "contributes": {
     "commands": [
       {
-        "command": "customButton.addButton",
+        "command": "commandDock.addButton",
         "title": "Add Custom Button",
-        "category": "Custom Button",
+        "category": "Command Dock",
         "icon": "$(add)"
       },
       {
-        "command": "customButton.removeButton",
+        "command": "commandDock.removeButton",
         "title": "Remove Custom Button",
-        "category": "Custom Button",
+        "category": "Command Dock",
         "icon": "$(trash)"
       },
       {
-        "command": "customButton.editButton",
+        "command": "commandDock.editButton",
         "title": "Edit Custom Button",
-        "category": "Custom Button",
+        "category": "Command Dock",
         "icon": "$(edit)"
       },
       {
-        "command": "customButton.refreshPanel",
+        "command": "commandDock.refreshPanel",
         "title": "Refresh",
         "icon": "$(refresh)"
       },
       {
-        "command": "customButton.executeFromPanel",
+        "command": "commandDock.executeFromPanel",
         "title": "Execute Command",
         "icon": "$(play)"
       },
       {
-        "command": "customButton.addButtonFromPanel",
+        "command": "commandDock.addButtonFromPanel",
         "title": "Add Button",
         "icon": "$(add)"
       },
       {
-        "command": "customButton.editButtonFromPanel",
+        "command": "commandDock.editButtonFromPanel",
         "title": "Edit Button",
         "icon": "$(edit)"
       },
       {
-        "command": "customButton.removeButtonFromPanel",
+        "command": "commandDock.removeButtonFromPanel",
         "title": "Remove Button",
         "icon": "$(trash)"
+      },
+      {
+        "command": "commandDock.openSettings",
+        "title": "Open Command Dock Settings",
+        "category": "Command Dock",
+        "icon": "$(gear)"
       }
     ],
     "views": {
       "explorer": [
         {
-          "id": "customButtonPanel",
+          "id": "commandDockPanel",
           "name": "Command Dock",
-          "when": "workspaceFolderCount > 0"
+          "when": "workspaceFolderCount > 0 && config.commandDock.panelLocation == 'explorer'"
+        }
+      ],
+      "scm": [
+        {
+          "id": "commandDockPanel",
+          "name": "Command Dock",
+          "when": "workspaceFolderCount > 0 && config.commandDock.panelLocation == 'scm'"
         }
       ]
     },
     "menus": {
       "view/title": [
         {
-          "command": "customButton.addButtonFromPanel",
-          "when": "view == customButtonPanel",
+          "command": "commandDock.addButtonFromPanel",
+          "when": "view == commandDockPanel",
           "group": "navigation@1"
         },
         {
-          "command": "customButton.refreshPanel",
-          "when": "view == customButtonPanel",
+          "command": "commandDock.refreshPanel",
+          "when": "view == commandDockPanel",
           "group": "navigation@2"
+        },
+        {
+          "command": "commandDock.openSettings",
+          "when": "view == commandDockPanel",
+          "group": "navigation@3"
         }
       ],
       "view/item/context": [
         {
-          "command": "customButton.executeFromPanel",
-          "when": "view == customButtonPanel && viewItem == customButton",
+          "command": "commandDock.executeFromPanel",
+          "when": "view == commandDockPanel && viewItem == commandDockButton",
           "group": "inline@1"
         },
         {
-          "command": "customButton.editButtonFromPanel",
-          "when": "view == customButtonPanel && viewItem == customButton",
+          "command": "commandDock.editButtonFromPanel",
+          "when": "view == commandDockPanel && viewItem == commandDockButton",
           "group": "inline@2"
         },
         {
-          "command": "customButton.removeButtonFromPanel",
-          "when": "view == customButtonPanel && viewItem == customButton",
+          "command": "commandDock.removeButtonFromPanel",
+          "when": "view == commandDockPanel && viewItem == commandDockButton",
           "group": "inline@3"
         },
         {
-          "command": "customButton.executeFromPanel",
-          "when": "view == customButtonPanel && viewItem == customButton",
+          "command": "commandDock.executeFromPanel",
+          "when": "view == commandDockPanel && viewItem == commandDockButton",
           "group": "context@1"
         },
         {
-          "command": "customButton.editButtonFromPanel",
-          "when": "view == customButtonPanel && viewItem == customButton",
+          "command": "commandDock.editButtonFromPanel",
+          "when": "view == commandDockPanel && viewItem == commandDockButton",
           "group": "context@2"
         },
         {
-          "command": "customButton.removeButtonFromPanel",
-          "when": "view == customButtonPanel && viewItem == customButton",
+          "command": "commandDock.removeButtonFromPanel",
+          "when": "view == commandDockPanel && viewItem == commandDockButton",
           "group": "context@3"
         }
       ]
     },
     "configuration": {
-      "title": "Custom Button Executor",
+      "title": "Command Dock",
       "properties": {
-        "customButton.buttons": {
+        "commandDock.buttons": {
           "type": "array",
           "default": [],
           "description": "Command Dock configuration",
@@ -172,6 +190,24 @@
               "command"
             ]
           }
+        },
+        "commandDock.autoCloseTerminal": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically close terminal after command execution"
+        },
+        "commandDock.panelLocation": {
+          "type": "string",
+          "default": "explorer",
+          "enum": [
+            "explorer",
+            "scm"
+          ],
+          "enumDescriptions": [
+            "Show in Explorer panel (left sidebar)",
+            "Show in Source Control panel (left sidebar)"
+          ],
+          "description": "Choose where to display the Command Dock panel"
         }
       }
     }
@@ -198,7 +234,7 @@
     "release:major": "bash scripts/release.sh major",
     "release:pre": "bash scripts/release.sh patch --pre-release",
     "install:local": "pnpm run compile && pnpm run package && code --install-extension *.vsix",
-    "uninstall:local": "code --uninstall-extension seagull.command-dock"
+    "uninstall:local": "code --uninstall-extension CommandDock.command-dock"
   },
   "devDependencies": {
     "@types/vscode": "^1.74.0",

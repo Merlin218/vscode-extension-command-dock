@@ -1,15 +1,15 @@
 import * as vscode from 'vscode';
-import { CustomButton } from './types';
+import { CommandDockButton } from './types';
 
 export class ConfigManager {
-  private static readonly CONFIG_KEY = 'customButton.buttons';
+  private static readonly CONFIG_KEY = 'commandDock.buttons';
 
-  public static getButtons(): CustomButton[] {
+  public static getButtons(): CommandDockButton[] {
     const config = vscode.workspace.getConfiguration();
-    return config.get<CustomButton[]>(this.CONFIG_KEY, []);
+    return config.get<CommandDockButton[]>(this.CONFIG_KEY, []);
   }
 
-  public static async addButton(button: CustomButton): Promise<void> {
+  public static async addButton(button: CommandDockButton): Promise<void> {
     const buttons = this.getButtons();
     
     if (buttons.some(b => b.id === button.id)) {
@@ -20,7 +20,7 @@ export class ConfigManager {
     await this.saveButtons(buttons);
   }
 
-  public static async updateButton(buttonId: string, updatedButton: CustomButton): Promise<void> {
+  public static async updateButton(buttonId: string, updatedButton: CommandDockButton): Promise<void> {
     const buttons = this.getButtons();
     const index = buttons.findIndex(b => b.id === buttonId);
     
@@ -43,7 +43,7 @@ export class ConfigManager {
     await this.saveButtons(filteredButtons);
   }
 
-  private static async saveButtons(buttons: CustomButton[]): Promise<void> {
+  private static async saveButtons(buttons: CommandDockButton[]): Promise<void> {
     const config = vscode.workspace.getConfiguration();
     await config.update(this.CONFIG_KEY, buttons, vscode.ConfigurationTarget.Workspace);
   }

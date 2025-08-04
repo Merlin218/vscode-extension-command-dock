@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { CustomButton } from './types';
+import { CommandDockButton } from './types';
 import { ConfigManager } from './configManager';
 import { ButtonManager } from './buttonManager';
 
@@ -64,7 +64,7 @@ export class UIHandler {
       });
 
       // 创建按钮配置
-      const button: CustomButton = {
+      const button: CommandDockButton = {
         id: ConfigManager.generateId(),
         name: name.trim(),
         command: command.trim(),
@@ -217,7 +217,7 @@ export class UIHandler {
       });
 
       // 更新按钮配置
-      const updatedButton: CustomButton = {
+      const updatedButton: CommandDockButton = {
         id: originalButton.id,
         name: name.trim(),
         command: command.trim(),

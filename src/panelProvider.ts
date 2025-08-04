@@ -1,15 +1,15 @@
 import * as vscode from 'vscode';
-import { CustomButton } from './types';
+import { CommandDockButton } from './types';
 import { ConfigManager } from './configManager';
 
-export class CustomButtonPanelProvider implements vscode.TreeDataProvider<CustomButtonItem> {
-  private _onDidChangeTreeData: vscode.EventEmitter<CustomButtonItem | undefined | null | void> = new vscode.EventEmitter<CustomButtonItem | undefined | null | void>();
-  readonly onDidChangeTreeData: vscode.Event<CustomButtonItem | undefined | null | void> = this._onDidChangeTreeData.event;
+export class CommandDockPanelProvider implements vscode.TreeDataProvider<CommandDockItem> {
+  private _onDidChangeTreeData: vscode.EventEmitter<CommandDockItem | undefined | null | void> = new vscode.EventEmitter<CommandDockItem | undefined | null | void>();
+  readonly onDidChangeTreeData: vscode.Event<CommandDockItem | undefined | null | void> = this._onDidChangeTreeData.event;
 
   constructor() {
     // 监听配置变化
     vscode.workspace.onDidChangeConfiguration(event => {
-      if (event.affectsConfiguration('customButton.buttons')) {
+      if (event.affectsConfiguration('commandDock.buttons')) {
         this.refresh();
       }
     });
@@ -19,11 +19,11 @@ export class CustomButtonPanelProvider implements vscode.TreeDataProvider<Custom
     this._onDidChangeTreeData.fire();
   }
 
-  getTreeItem(element: CustomButtonItem): vscode.TreeItem {
+  getTreeItem(element: CommandDockItem): vscode.TreeItem {
     return element;
   }
 
-  getChildren(element?: CustomButtonItem): Thenable<CustomButtonItem[]> {
+  getChildren(element?: CommandDockItem): Thenable<CommandDockItem[]> {
     if (!element) {
       // 根级别：显示工作区分组
       return Promise.resolve(this.getWorkspaceGroups());
@@ -34,7 +34,7 @@ export class CustomButtonPanelProvider implements vscode.TreeDataProvider<Custom
     return Promise.resolve([]);
   }
 
-  private getWorkspaceGroups(): CustomButtonItem[] {
+  private getWorkspaceGroups(): CommandDockItem[] {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders || workspaceFolders.length === 0) {
       return [];
@@ -48,7 +48,7 @@ export class CustomButtonPanelProvider implements vscode.TreeDataProvider<Custom
     // 多工作区：显示工作区分组
     return workspaceFolders.map(folder => {
       const buttonCount = this.getButtonCountForWorkspace(folder.uri.fsPath);
-      return new CustomButtonItem(
+      return new CommandDockItem(
         folder.name,
         `${buttonCount} buttons`,
         vscode.TreeItemCollapsibleState.Expanded,
@@ -59,11 +59,11 @@ export class CustomButtonPanelProvider implements vscode.TreeDataProvider<Custom
     });
   }
 
-  private getButtonsForWorkspace(workspacePath: string): CustomButtonItem[] {
+  private getButtonsForWorkspace(workspacePath: string): CommandDockItem[] {
     const buttons = ConfigManager.getButtons();
     
     if (buttons.length === 0) {
-      return [new CustomButtonItem(
+      return [new CommandDockItem(
         'No buttons configured',
         'Click + to add a button',
         vscode.TreeItemCollapsibleState.None,
@@ -72,11 +72,11 @@ export class CustomButtonPanelProvider implements vscode.TreeDataProvider<Custom
     }
 
     return buttons.map(button => {
-      const item = new CustomButtonItem(
+      const item = new CommandDockItem(
         button.name,
         button.command,
         vscode.TreeItemCollapsibleState.None,
-        'customButton',
+        'commandDockButton',
         button
       );
 
@@ -89,7 +89,7 @@ export class CustomButtonPanelProvider implements vscode.TreeDataProvider<Custom
 
       // 设置命令
       item.command = {
-        command: 'customButton.executeFromPanel',
+        command: 'commandDock.executeFromPanel',
         title: 'Execute',
         arguments: [button]
       };
@@ -104,20 +104,20 @@ export class CustomButtonPanelProvider implements vscode.TreeDataProvider<Custom
   }
 }
 
-export class CustomButtonItem extends vscode.TreeItem {
+export class CommandDockItem extends vscode.TreeItem {
   constructor(
     public readonly label: string,
     public readonly description: string,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState,
     public readonly contextValue: string,
-    public readonly button?: CustomButton,
+    public readonly button?: CommandDockButton,
     public readonly workspacePath?: string
   ) {
     super(label, collapsibleState);
     this.description = description;
     this.contextValue = contextValue;
     
-    if (contextValue === 'customButton') {
+    if (contextValue === 'commandDockButton') {
       this.tooltip = `${this.label}\nCommand: ${this.description}\nClick to execute`;
     } else if (contextValue === 'workspace') {
       this.tooltip = `Workspace: ${this.label}`;

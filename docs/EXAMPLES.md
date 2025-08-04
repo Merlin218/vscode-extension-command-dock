@@ -8,7 +8,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "dev-server",
       "name": "🚀 Dev Server",
@@ -52,7 +52,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "nextjs-dev",
       "name": "⚡ Next Dev",
@@ -87,7 +87,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "node-dev",
       "name": "🔥 Nodemon",
@@ -120,7 +120,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "django-runserver",
       "name": "🐍 Django Server",
@@ -155,7 +155,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "git-status",
       "name": "📊 Status",
@@ -191,7 +191,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "git-feature-start",
       "name": "🌟 New Feature",
@@ -226,7 +226,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "docker-up",
       "name": "🐳 Up",
@@ -267,7 +267,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "k8s-pods",
       "name": "🚀 Pods",
@@ -302,7 +302,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "db-connect",
       "name": "🗄️ Connect DB",
@@ -331,7 +331,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "deploy-staging",
       "name": "🚧 Deploy Staging",
@@ -361,7 +361,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "gh-actions-status",
       "name": "⚡ Actions Status",
@@ -390,7 +390,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "clean-node-modules",
       "name": "🧹 Clean Modules",
@@ -423,7 +423,7 @@
 
 ```json
 {
-  "customButton.buttons": [
+  "commandDock.buttons": [
     {
       "id": "system-info",
       "name": "💻 System Info",

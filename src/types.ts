@@ -1,4 +1,4 @@
-export interface CustomButton {
+export interface CommandDockButton {
   id: string;
   name: string;
   command: string;
@@ -6,6 +6,9 @@ export interface CustomButton {
   color?: string;
 }
 
+// Backward compatibility alias
+export type CustomButton = CommandDockButton;
+
 export interface ButtonConfig {
-  buttons: CustomButton[];
+  buttons: CommandDockButton[];
 } 

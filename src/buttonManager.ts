@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { CustomButton } from './types';
+import { CommandDockButton } from './types';
 import { CommandExecutor } from './commandExecutor';
 
 export class ButtonManager {
@@ -10,7 +10,7 @@ export class ButtonManager {
    */
   public static initializeButtons(): void {
     this.clearAllButtons();
-    const buttons = vscode.workspace.getConfiguration().get<CustomButton[]>('customButton.buttons', []);
+    const buttons = vscode.workspace.getConfiguration().get<CommandDockButton[]>('commandDock.buttons', []);
     
     buttons.forEach(button => {
       this.createButton(button);
@@ -20,7 +20,7 @@ export class ButtonManager {
   /**
    * 创建状态栏按钮
    */
-  public static createButton(button: CustomButton): void {
+  public static createButton(button: CommandDockButton): void {
     const statusBarItem = vscode.window.createStatusBarItem(
       vscode.StatusBarAlignment.Left,
       100
@@ -37,7 +37,7 @@ export class ButtonManager {
 
     // 设置点击命令
     statusBarItem.command = {
-      command: 'customButton.execute',
+      command: 'commandDock.execute',
       title: button.name,
       arguments: [button]
     };
@@ -55,7 +55,7 @@ export class ButtonManager {
   /**
    * 更新按钮
    */
-  public static updateButton(button: CustomButton): void {
+  public static updateButton(button: CommandDockButton): void {
     this.removeButton(button.id);
     this.createButton(button);
   }
@@ -82,7 +82,7 @@ export class ButtonManager {
   /**
    * 执行按钮命令
    */
-  public static async executeButtonCommand(button: CustomButton): Promise<void> {
+  public static async executeButtonCommand(button: CommandDockButton): Promise<void> {
     await CommandExecutor.executeCommand(button.command, button.name);
   }
 
