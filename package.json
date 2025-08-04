@@ -2,7 +2,7 @@
   "name": "command-dock",
   "displayName": "Command Dock",
   "description": "A powerful command panel with Command Dock for executing terminal commands in your workspace",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "CommandDock",
   "icon": "public/icon.png",
   "engines": {
