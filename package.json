@@ -2,7 +2,7 @@
   "name": "command-dock",
   "displayName": "Command Dock",
   "description": "A powerful command panel with Command Dock for executing terminal commands in your workspace",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "CommandDock",
   "icon": "public/icon.png",
   "engines": {
@@ -89,14 +89,14 @@
     "views": {
       "explorer": [
         {
-          "id": "commandDockPanel",
+          "id": "commandDockPanelExplorer",
           "name": "Command Dock",
           "when": "workspaceFolderCount > 0 && config.commandDock.panelLocation == 'explorer'"
         }
       ],
       "scm": [
         {
-          "id": "commandDockPanel",
+          "id": "commandDockPanelScm",
           "name": "Command Dock",
           "when": "workspaceFolderCount > 0 && config.commandDock.panelLocation == 'scm'"
         }
@@ -106,49 +106,49 @@
       "view/title": [
         {
           "command": "commandDock.addButtonFromPanel",
-          "when": "view == commandDockPanel",
+          "when": "view == commandDockPanelExplorer || view == commandDockPanelScm",
           "group": "navigation@1"
         },
         {
           "command": "commandDock.refreshPanel",
-          "when": "view == commandDockPanel",
+          "when": "view == commandDockPanelExplorer || view == commandDockPanelScm",
           "group": "navigation@2"
         },
         {
           "command": "commandDock.openSettings",
-          "when": "view == commandDockPanel",
+          "when": "view == commandDockPanelExplorer || view == commandDockPanelScm",
           "group": "navigation@3"
         }
       ],
       "view/item/context": [
         {
           "command": "commandDock.executeFromPanel",
-          "when": "view == commandDockPanel && viewItem == commandDockButton",
+          "when": "(view == commandDockPanelExplorer || view == commandDockPanelScm) && viewItem == commandDockButton",
           "group": "inline@1"
         },
         {
           "command": "commandDock.editButtonFromPanel",
-          "when": "view == commandDockPanel && viewItem == commandDockButton",
+          "when": "(view == commandDockPanelExplorer || view == commandDockPanelScm) && viewItem == commandDockButton",
           "group": "inline@2"
         },
         {
           "command": "commandDock.removeButtonFromPanel",
-          "when": "view == commandDockPanel && viewItem == commandDockButton",
+          "when": "(view == commandDockPanelExplorer || view == commandDockPanelScm) && viewItem == commandDockButton",
           "group": "inline@3"
         },
         {
           "command": "commandDock.executeFromPanel",
-          "when": "view == commandDockPanel && viewItem == commandDockButton",
+          "when": "(view == commandDockPanelExplorer || view == commandDockPanelScm) && viewItem == commandDockButton",
           "group": "context@1"
         },
         {
           "command": "commandDock.editButtonFromPanel",
-          "when": "view == commandDockPanel && viewItem == commandDockButton",
+          "when": "(view == commandDockPanelExplorer || view == commandDockPanelScm) && viewItem == commandDockButton",
           "group": "context@2"
         },
         {
           "command": "commandDock.removeButtonFromPanel",
-          "when": "view == commandDockPanel && viewItem == commandDockButton",
+          "when": "(view == commandDockPanelExplorer || view == commandDockPanelScm) && viewItem == commandDockButton",
           "group": "context@3"
         }
       ]
@@ -219,6 +219,7 @@
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
     "lint:fix": "eslint src --ext ts --fix",
+    "validate:package": "node scripts/validate-package.js",
     "test": "node ./out/test/runTest.js",
     "clean": "rimraf out *.vsix",
     "package": "vsce package",
